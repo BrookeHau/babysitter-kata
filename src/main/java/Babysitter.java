@@ -13,6 +13,12 @@ public class Babysitter {
 		this.bedTime = Math.round(bedTime);
 		this.endTime = Math.round(endTime);
 	}
+	
+	public double convertHours (double hour) {
+		if(hour <= 4 && hour >= 0) {
+			return hour += 24;
+		} return hour;
+	}
 
 	public double getPay() {
 		return payTier1() + payTier2() + payTier3(); 
@@ -23,6 +29,9 @@ public class Babysitter {
 	}
 	
 	public double hoursBetweenStartAndBed() {
+		if(endTime < bedTime) {
+			return endTime - startTime;
+		}
 		return bedTime - startTime;
 	}
 
