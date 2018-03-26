@@ -1,28 +1,44 @@
 
 public class Babysitter {
 
-	private int startTime;
-	private int bedTime;
-	private int endTime;
+	private double startTime;
+	private double bedTime;
+	private double endTime;
 	private int payRate1 = 12;
 	private int payRate2 = 8;
 	private int payRate3 = 16;
 
-	public Babysitter(int startTime, int bedTime, int endTime) {
-		this.startTime = startTime;
-		this.bedTime = bedTime;
-		this.endTime = endTime;
+	public Babysitter(double startTime, double bedTime, double endTime) {
+		this.startTime = Math.round(startTime);
+		this.bedTime = Math.round(bedTime);
+		this.endTime = Math.round(endTime);
 	}
 
-	public int getPay() {
-		return payBeforeBedTime();
+	public double getPay() {
+		return payTier1() + payTier2() + payTier3(); 
 	}
 
-	public int payBeforeBedTime (){
-		return hoursBeforeBedTime() * payRate1;
+	public double payTier1 (){
+		return hoursBetweenStartAndBed() * payRate1;
 	}
 	
-	public int hoursBeforeBedTime() {
+	public double hoursBetweenStartAndBed() {
 		return bedTime - startTime;
+	}
+
+	public double hoursBetweenBedAndMidnight() {
+		return 24 - bedTime;
+	}
+
+	public double payTier2() {
+		return hoursBetweenBedAndMidnight() * payRate2;
+	}
+
+	public double payTier3() {
+		return hoursBetweenMidnightAndEnd() * payRate3;
+	}
+
+	private double hoursBetweenMidnightAndEnd() {
+		return endTime - 0;
 	}
 }
