@@ -56,4 +56,25 @@ public class BabysitterTest {
 		assertThat(pay, is(12.0));
 	}
 	
+	@Test
+	public void babysitterLeftAtMidnight() {
+		Babysitter babysitter = new Babysitter(17, 19, 24);
+		double pay = babysitter.getPay();
+		assertThat(pay, is(64.0));
+	}
+	
+	@Test
+	public void babysitterLeftBeforeMidnight() {
+		Babysitter babysitter = new Babysitter(17, 19, 22);
+		double pay = babysitter.getPay();
+		assertThat(pay, is(48.0));
+	}
+	
+	@Test
+	public void arriveAfterFive() {
+		Babysitter babysitter = new Babysitter(17.6, 19, 22);
+		double pay = babysitter.getPay();
+		assertThat(pay, is(36.0));
+	}
+	
 }

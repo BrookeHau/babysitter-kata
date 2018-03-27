@@ -8,6 +8,9 @@ public class Babysitter {
 	private int payRate2 = 8;
 	private int payRate3 = 16;
 
+	public Babysitter() {
+		
+	}
 	public Babysitter(double startTime, double bedTime, double endTime) {
 		this.startTime = convertHours(Math.round(startTime));
 		this.bedTime = convertHours(Math.round(bedTime));
@@ -39,6 +42,8 @@ public class Babysitter {
 	public double hoursBetweenBedAndMidnight() {
 		if(endTime < bedTime) {
 			return 0;
+		} if(endTime < 24) {
+			return endTime - bedTime;
 		}
 		return 24 - bedTime;
 	}
@@ -53,6 +58,8 @@ public class Babysitter {
 
 	private double hoursBetweenMidnightAndEnd() {
 		if(endTime < bedTime ) {
+			return 0;
+		} if(endTime < 24) {
 			return 0;
 		}
 		return endTime - 24;
