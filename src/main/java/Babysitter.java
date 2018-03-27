@@ -9,33 +9,37 @@ public class Babysitter {
 	private int payRate3 = 16;
 
 	public Babysitter(double startTime, double bedTime, double endTime) {
-		this.startTime = Math.round(startTime);
-		this.bedTime = Math.round(bedTime);
-		this.endTime = Math.round(endTime);
+		this.startTime = convertHours(Math.round(startTime));
+		this.bedTime = convertHours(Math.round(bedTime));
+		this.endTime = convertHours(Math.round(endTime));
 	}
-	
-	public double convertHours (double hour) {
-		if(hour <= 4 && hour >= 0) {
+
+	public double convertHours(double hour) {
+		if (hour <= 4 && hour >= 0) {
 			return hour += 24;
-		} return hour;
+		}
+		return hour;
 	}
 
 	public double getPay() {
-		return payTier1() + payTier2() + payTier3(); 
+		return payTier1() + payTier2() + payTier3();
 	}
 
-	public double payTier1 (){
+	public double payTier1() {
 		return hoursBetweenStartAndBed() * payRate1;
 	}
-	
+
 	public double hoursBetweenStartAndBed() {
-		if(endTime < bedTime) {
+		if (endTime < bedTime) {
 			return endTime - startTime;
 		}
 		return bedTime - startTime;
 	}
 
 	public double hoursBetweenBedAndMidnight() {
+		if(endTime < bedTime) {
+			return 0;
+		}
 		return 24 - bedTime;
 	}
 
@@ -48,6 +52,9 @@ public class Babysitter {
 	}
 
 	private double hoursBetweenMidnightAndEnd() {
-		return endTime - 0;
+		if(endTime < bedTime ) {
+			return 0;
+		}
+		return endTime - 24;
 	}
 }

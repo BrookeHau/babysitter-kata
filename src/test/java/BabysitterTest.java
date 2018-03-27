@@ -50,7 +50,7 @@ public class BabysitterTest {
 	}
 	
 	@Test
-	public void payLeaveBeforeBed() {
+	public void payIfBabysitterLeftBeforeBed() {
 		Babysitter babysitter = new Babysitter(17, 19, 18);
 		double pay = babysitter.getPay();
 		assertThat(pay, is(12.0));
